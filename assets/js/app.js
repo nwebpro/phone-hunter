@@ -10,8 +10,8 @@ const displayPhone = (phones, dataLimit) => {
     phoneContainer.innerHTML = '';
     // Display 10 phone
     const showAll = document.getElementById('show-all');
-    if(dataLimit && phones.length > 9){
-        phones = phones.slice(0, 9);
+    if(dataLimit && phones.length > 12){
+        phones = phones.slice(0, 12);
         showAll.classList.remove('d-none');
     }else{
         showAll.classList.add('d-none');
@@ -31,11 +31,13 @@ const displayPhone = (phones, dataLimit) => {
         const phoneDiv = document.createElement('col');
         phoneDiv.innerHTML = `
             <div class="card p-3">
-                <img src="${image}" class="card-img-top" alt="...">
+                <div class="text-center">
+                    <img src="${image}" style="width: 150px; margin: 0 auto;" class="card-img-top" alt="...">
+                </div>
                 <div class="card-body">
                     <h5 class="card-title">${phone_name ? phone_name : ''}</h5>
                     <p class="card-text">${brand ? brand : ''}</p>
-                    <button type="button" onclick="loadPhoneDetails('${slug}')" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#phoneDetailsModal">Details</button>
+                    <button type="button" onclick="loadPhoneDetails('${slug}')" class="btn btn-warning text-white" data-bs-toggle="modal" data-bs-target="#phoneDetailsModal">Details</button>
                 </div>
             </div>
         `;
@@ -55,13 +57,13 @@ const processSearch = dataLimit => {
 
 // Search Phone by Name
 document.getElementById('search-phone').addEventListener('click', function(){
-    processSearch(9);
+    processSearch(12);
 })
 
 // search input field enter key handler
 document.getElementById('search-field').addEventListener('keypress', function(event){
     if(event.key === 'Enter'){
-        processSearch(9);
+        processSearch(12);
     }
 })
 
@@ -138,7 +140,7 @@ const displayPhoneDetails = phone => {
             <td></td>
         </tr>
         <tr>
-            <td>USB</td>
+            <td>Size</td>
             <td>${mainFeatures.displaySize ? mainFeatures.displaySize : ''}</td>
         </tr>
         <tr>
@@ -178,4 +180,4 @@ const displayPhoneDetails = phone => {
 
 
 // Default Apple All Phone Show
-loadPhone(9, "Apple");
+loadPhone(12, "Phone");
